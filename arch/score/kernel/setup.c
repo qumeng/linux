@@ -101,7 +101,7 @@ static void __init resource_init(void)
 	res->name = "System RAM";
 	res->start = MEMORY_START;
 	res->end = MEMORY_START + MEMORY_SIZE - 1;
-	res->flags = IORESOURCE_MEM | IORESOURCE_BUSY;
+	res->flags = IORESOURCE_SYSTEM_RAM | IORESOURCE_BUSY;
 	request_resource(&iomem_resource, res);
 
 	request_resource(res, &code_resource);
@@ -124,9 +124,7 @@ static int show_cpuinfo(struct seq_file *m, void *v)
 {
 	unsigned long n = (unsigned long) v - 1;
 
-	seq_printf(m, "processor\t\t: %ld\n", n);
-	seq_printf(m, "\n");
-
+	seq_printf(m, "processor\t\t: %ld\n\n", n);
 	return 0;
 }
 

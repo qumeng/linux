@@ -11,9 +11,9 @@
 #ifndef ASM_ARC_DMA_MAPPING_H
 #define ASM_ARC_DMA_MAPPING_H
 
-extern struct dma_map_ops arc_dma_ops;
+extern const struct dma_map_ops arc_dma_ops;
 
-static inline struct dma_map_ops *get_dma_ops(struct device *dev)
+static inline const struct dma_map_ops *get_arch_dma_ops(struct bus_type *bus)
 {
 	return &arc_dma_ops;
 }

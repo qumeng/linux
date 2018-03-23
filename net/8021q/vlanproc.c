@@ -80,7 +80,6 @@ static int vlan_seq_open(struct inode *inode, struct file *file)
 }
 
 static const struct file_operations vlan_fops = {
-	.owner	 = THIS_MODULE,
 	.open    = vlan_seq_open,
 	.read    = seq_read,
 	.llseek  = seq_lseek,
@@ -97,7 +96,6 @@ static int vlandev_seq_open(struct inode *inode, struct file *file)
 }
 
 static const struct file_operations vlandev_fops = {
-	.owner = THIS_MODULE,
 	.open    = vlandev_seq_open,
 	.read    = seq_read,
 	.llseek  = seq_lseek,
@@ -184,12 +182,11 @@ int vlan_proc_add_dev(struct net_device *vlandev)
 /*
  *	Delete directory entry for VLAN device.
  */
-int vlan_proc_rem_dev(struct net_device *vlandev)
+void vlan_proc_rem_dev(struct net_device *vlandev)
 {
 	/** NOTE:  This will consume the memory pointed to by dent, it seems. */
 	proc_remove(vlan_dev_priv(vlandev)->dent);
 	vlan_dev_priv(vlandev)->dent = NULL;
-	return 0;
 }
 
 /****** Proc filesystem entry points ****************************************/
